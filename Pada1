@@ -1,0 +1,37 @@
+When you discover that SMB port 445 is exposed
+SMB is Server Message Block
+
+Run the Nmap script to list the supported protocols and dialects of SMB server
+# nmap -p445 --script smb-protocols <IP>
+
+Run security mode script to return the information about SMB security level
+# nmap -p445 --script smb-security-mode <IP>
+
+Enumerate the users logged into the system through SMB share
+Without credentials:
+# nmap -p445 --script smb-enum-sessions <IP>
+
+With credentials
+# nmap -p445 --script smb-enum-sessions --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Enumerate all available shares
+Without credentials
+# nmap -p445 --script smb-enum-shares <IP>
+
+Whith credentials
+# nmap -p445 --script smb-enum-shares --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Enumerate windows users on a target machine
+# nmap -p445 --script smb-enum-users --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Get information about the server statistics
+# nmap -p445 --script smb-server-stats --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Enumerate available domains on the target machine
+# nmap -p445 --script smb-enum-domains --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Enumerate services on the target machine
+# nmap -p445 --script smb-enum-services --script-args smbusername=<username>,smbpassword=<password> <IP>
+
+Enumerate all the shared folders and drives
+# nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=<username>,smbpassword=<password> <IP>
